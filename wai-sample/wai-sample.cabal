@@ -3,10 +3,10 @@ version:             0.1.0.0
 -- synopsis:
 -- description:
 homepage:            https://github.com/mike-neck/haskell-til
-license:             Apache2
+license:             Apache-2.0
 license-file:        LICENSE
 author:              Shinya Mochida
-maintainer:          @mike_neck
+maintainer:          mike_neck
 copyright:           2017 Shinya Mochida
 category:            Web
 build-type:          Simple
@@ -21,4 +21,4 @@ executable wai-sample
                      , wai
                      , warp
                      , http-types
-
+                     , bytestring
