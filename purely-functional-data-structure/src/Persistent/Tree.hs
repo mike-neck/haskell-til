@@ -30,3 +30,14 @@ instance Set Tree where
 
 treeOf:: (Ord a) => [a] -> Tree a
 treeOf xs = foldl (flip insert) Empty xs
+
+impMember:: (Ord a) => a -> Tree a -> Bool
+impMember _ Empty   = False
+impMember x (Tree l y r)
+  | x < y     = impMember x l
+  | otherwise = go x r y
+  where
+    go x Empty c = x == c
+    go x (Tree l y r) c
+      | x < y     = go x l c
+      | otherwise = go x r y
