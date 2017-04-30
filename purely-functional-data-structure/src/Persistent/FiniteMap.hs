@@ -25,4 +25,7 @@ instance FiniteMap FM where
         | otherwise = go x r $ Just e
 
   bind k x Empty  = Tree Empty (k, x) Empty
-  bind k x t      = undefined
+  bind k x (Tree l e@(k', v) r)
+    | k < k'    = Tree (bind k x l) e r
+    | k > k'    = Tree l e $ bind k x r
+    | otherwise = Tree l (k, x) r
