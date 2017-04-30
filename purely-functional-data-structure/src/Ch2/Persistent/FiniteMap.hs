@@ -1,6 +1,6 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module Persistent.FiniteMap where
+module Ch2.Persistent.FiniteMap where
 
 class FiniteMap fm where
   empty:: (Ord k) => fm k a

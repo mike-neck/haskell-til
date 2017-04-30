@@ -1,6 +1,6 @@
 {-# LANGUAGE InstanceSigs #-}
 
-module Persistent.Tree where
+module Ch2.Persistent.Tree where
 
 class Set s where
   empty :: (Ord a) => s a

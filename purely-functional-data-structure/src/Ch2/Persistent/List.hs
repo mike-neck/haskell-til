@@ -1,4 +1,4 @@
-module Persistent.List where
+module Ch2.Persistent.List where
 
 import Prelude hiding (tail)
 
