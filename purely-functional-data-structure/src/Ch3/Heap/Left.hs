@@ -12,12 +12,14 @@ instance (Show a) => Show (LeftHeap a) where
 single:: a -> LeftHeap a
 single x = Tree 1 x Empty Empty
 
+rank:: LeftHeap a -> Int
+rank Empty = 0
+rank (Tree r _ _ _) = r
+
 increment:: LeftHeap a -> Int
 increment = (+ 1) . rank
 
 instance Heap LeftHeap where
-  rank Empty = 0
-  rank (Tree r _ _ _) = r
 
   empty = Empty
   isEmpty = (== 0) . rank
