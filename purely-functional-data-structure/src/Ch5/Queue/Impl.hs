@@ -1,17 +1,21 @@
-module Ch5.Deque where
+module Ch5.Queue.Impl(
+  toQueue
+)where
 
-import Prelude hiding (head, tail, init, last)
-import Ch5.Queue(Queue(..))
-
-class (Queue d) => Deque d where
-  push:: a -> d a -> d a
-  pop:: d a -> (a, d a)
-  pop q = (last q, init q)
-
-  last:: d a -> a
-  init:: d a -> d a
+import Ch5.Queue.Interface
 
 newtype DefaultQueue a = DefaultQueue { getQueue:: ([a], [a]) }
+
+toQueue:: [a] -> DefaultQueue a
+toQueue xs = DefaultQueue (xs, [])
+
+instance (Show a) => Show (DefaultQueue a) where
+  show (DefaultQueue (a,b)) = "Queue[" ++ go (a, reverse b)
+    where
+      go ([], []) = "]"
+      go ([], x:xs) = "," ++ show x ++ go ([],xs)
+      go ([x], ys)  = show x ++ go ([], ys)
+      go (x:xs, ys) = show x ++ "," ++ go (xs, ys)
 
 instance Queue DefaultQueue where
   empty = DefaultQueue ([], [])
@@ -43,3 +47,5 @@ instance Deque DefaultQueue where
   init (DefaultQueue (f, []))     = let (x:xs) = reverse f in
     DefaultQueue $ checkf ([], xs)
   init (DefaultQueue (f, (x:xs))) = DefaultQueue (f, xs)
+
+
