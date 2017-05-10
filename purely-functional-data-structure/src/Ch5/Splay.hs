@@ -3,8 +3,10 @@
 
 module Ch5.Splay where
 
+import Ch3.Heap
+
 data Splay a = Empty | Tree (Splay a) a (Splay a)
-  deriving Functor
+  deriving (Functor, Eq)
 
 instance (Show a) => Show (Splay a) where
   show Empty = "[]"
@@ -60,3 +62,26 @@ partition p t@(Tree l x r)
         (s,b) = partition p ll
         tr = Tree lr x r
           in (s, Tree b y tr)
+
+instance Heap Splay where
+  empty = Empty
+  isEmpty Empty = True
+  isEmpty _ = False
+
+  insert x t = let (s,b) = partition x t in Tree s x b
+
+  merge Empty t = t
+  merge (Tree l x r) t = let (s,b) = partition x t
+    in Tree (merge s l) x (merge b r)
+
+  findMin Empty             = Nothing
+  findMin (Tree Empty x _)  = Just x
+  findMin (Tree l _ _)      = findMin l
+
+  deleteMin Empty             = Nothing
+  deleteMin (Tree Empty x r)  = Just (x, r)
+  deleteMin (Tree l y r)      = case l of
+    Tree Empty x b  -> Just (x, Tree b y r)
+    Tree s x b      -> do
+      (z, t) <- deleteMin s
+      return (z, Tree t x (Tree b y r))
