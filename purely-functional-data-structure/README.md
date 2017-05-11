@@ -1,1 +1,13 @@
-# purely-functional-data-structure
+purely-functional-data-structure
+---
+
+純粋関数型データ構造の読書記録
+
+* 2章 永続性
+  * [] 演習2.1
+  * [] 演習2.2
+  * [] 演習2.3
+  * [] 演習2.4
+  * [] 演習2.5
+  * [] 演習2.6
+
