@@ -5,4 +5,4 @@ class Sortable s where
 
   add:: (Ord a) => a -> s a -> s a
 
-  sorted:: (Ord a) => s a -> a
+  sorted:: (Ord a) => s a -> [a]
