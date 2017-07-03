@@ -1,12 +1,17 @@
 module Main where
 
-import Java.Io.File
+import Control.Monad(foldM)
 import Java
+import Java.Time.Month
 
 main :: IO ()
 main = do
-  path <- java $ do
-    file <- createTempFile "sample" ".txt"
-    io $ putStrLn "Executing an IO action inside of Java Monad"
-    file <.> getAbsolutePath
-  putStrLn path
+  months <- java $ do
+    ms <- monthValues
+    ms <.> arrayToList
+  str <- foldM joinWithComma "" months
+  putStrLn str
+  where
+    joinWithComma :: String -> Month -> IO String
+    joinWithComma [] m = return $ show m
+    joinWithComma s  m = return $ s ++ ", " ++ (show m)

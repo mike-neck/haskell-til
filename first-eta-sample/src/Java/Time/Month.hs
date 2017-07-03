@@ -1,4 +1,4 @@
-{-# LANGUAGE MagicHash #-}
+{-# LANGUAGE MagicHash, DataKinds, MultiParamTypeClasses, TypeFamilies #-}
 
 module Java.Time.Month where
 
