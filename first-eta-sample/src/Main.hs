@@ -1,11 +1,25 @@
 module Main where
 
 import Control.Monad(foldM)
-import Java
+import Java hiding (toString)
 import Java.Time.Month
+import Java.Nio.File.Path
 
 main :: IO ()
 main = do
+  showPathOfJar
+
+showPathOfJar :: IO ()
+showPathOfJar = do
+  jarFile <- java $ do
+    array <- arrayFromList $ fmap (toJava :: String -> JString) ["build", "first-eta-sample", "first-eta-sample.jar"]
+    path <- getPath "dist" array
+    path <.> toAbsolutePath
+  pathString <- java $ jarFile <.> toString
+  putStrLn pathString
+
+showMonths :: IO ()
+showMonths = do
   months <- java $ do
     ms <- monthValues
     ms <.> arrayToList
