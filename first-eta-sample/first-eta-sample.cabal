@@ -51,7 +51,13 @@ executable first-eta-sample
   main-is:             Main.hs
 
   -- Modules included in this executable, other than Main.
-  other-modules:       Java.Io.File       
+  other-modules:       Java.Io.File
+                     , Java.Nio.File.Files
+                     , Java.Nio.File.FileVisitor
+                     , Java.Nio.File.Path
+                     , Java.Time.Month
+                     , Java.Util.Function
+                     , Java.Util.Stream
 
   -- LANGUAGE extensions used by modules in this package.
   -- other-extensions:    

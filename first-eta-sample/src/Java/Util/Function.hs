@@ -1,9 +1,8 @@
-{-# LANGUAGE MagicHash #-}
+{-# LANGUAGE MagicHash, TypeOperators, FlexibleContexts #-}
 
 module Java.Util.Function where
 
 import Java
-import Prelude hiding (Int)
 
 -- ---- import java.util.function.IntFunction
 data {-# CLASS "java.util.function.IntFunction" #-} IntFunction a = IntFunction (Object# (IntFunction a)) deriving Class
